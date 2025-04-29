@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anthony Beita Toruño | Web3 Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #1e293b;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --dark-gray: #334155;
+      --success: #10b981;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Header Section */
+    header {
+      min-height: 100vh;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+      z-index: -2;
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      z-index: 1;
+    }
+    
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--light);
+    }
+    
+    .social-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .social-link.github:hover {
+      background-color: #333;
+      color: white;
+    }
+    
+    .social-link.linkedin:hover {
+      background-color: #0077b5;
+      color: white;
+    }
+    
+    .social-link i {
+      font-size: 1.2rem;
+    }
+    
+    .cta-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .cta-button {
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .primary-button {
+      background-color: var(--primary);
+      color: white;
+      border: 2px solid var(--primary);
+    }
+    
+    .primary-button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+    }
+    
+    .secondary-button {
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .secondary-button:hover {
+      background-color: rgba(37, 99, 235, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .like-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+    }
+    
+    .like-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray);
+      transition: all 0.3s ease;
+    }
+    
+    .like-button:hover {
+      color: #ff0000;
+    }
+    
+    .like-button.liked {
+      color: #ff0000;
+    }
+    
+    .like-count {
+      font-weight: 600;
+      color: white;
+    }
+    
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      color: white;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), #7c3aed);
+      border-radius: 2px;
+    }
+    
+    p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+    
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    
+    .project-description {
+      color: var(--gray);
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: auto;
+    }
+    
+    .project-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Certificates Section */
+    .certificates-container {
+      margin-top: 2rem;
+    }
+    
+    .toggle-certificates {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+    }
+    
+    .toggle-certificates:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .certificates-list {
+      display: none;
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1rem;
+    }
+    
+    .certificates-list.visible {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .certificate-item {
+      margin-bottom: 1rem;
+    }
+    
+    .certificate-link {
+      display: block;
+      padding: 1rem;
+      background-color: rgba(30, 41, 59, 0.5);
+      border-radius: 8px;
+      color: var(--light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .certificate-link:hover {
+      background-color: rgba(37, 99, 235, 0.1);
+      transform: translateX(5px);
+    }
+    
+    .certificate-link i {
+      margin-right: 0.5rem;
+      color: var(--primary);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--secondary);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-text {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      .header-content {
+        padding: 1rem;
+      }
+      
+      .social-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .cta-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-bg"></div>
+    <div class="header-content">
+      <div class="profile-container">
+        <h1>Anthony Beita Toruño</h1>
+        <p class="tagline">Web3 Developer - Construyendo el futuro descentralizado</p>
+        
+        <div class="social-links">
+          <a href="https://github.com/L0rDB0t" target="_blank" class="social-link github">
+            <i class="fab fa-github"></i>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/anthony-beita-581a0b260/" target="_blank" class="social-link linkedin">
+            <i class="fab fa-linkedin-in"></i>
+            LinkedIn
+          </a>
+        </div>
+        
+        <div class="cta-container">
+          <a href="#projects" class="cta-button primary-button">
+            <i class="fas fa-code"></i>
+            Mis Proyectos
+          </a>
+          <a href="#certificates" class="cta-button secondary-button">
+            <i class="fas fa-certificate"></i>
+            Certificados
+          </a>
+        </div>
+        
+        <div class="like-container">
+          <button class="like-button" id="like-button">
+            <i class="fas fa-heart" id="heart-icon"></i>
+          </button>
+          <span class="like-count" id="like-counter">0</span>
+          <span>Me gusta</span>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <section id="about" class="visible">
+      <h2>Sobre Mí</h2>
+      <p>
+        Soy un desarrollador Web3 apasionado por la construcción de aplicaciones descentralizadas y smart contracts. 
+        Mi enfoque se centra en crear soluciones innovadoras que aprovechen el potencial de la tecnología blockchain 
+        para empoderar a los usuarios y transformar industrias.
+      </p>
+      <p>
+        Con experiencia en plataformas como Layer3 y Dework, participo activamente en el ecosistema cripto, 
+        contribuyendo a proyectos de código abierto y completando bounties que me permiten crecer como builder 
+        en este espacio en constante evolución.
+      </p>
+    </section>
+    
+    <section id="projects">
+      <h2>Contribuciones y Proyectos</h2>
+      <p>
+        Explora mis contribuciones recientes al ecosistema Web3 y los proyectos en los que estoy trabajando actualmente.
+      </p>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3 class="project-title">Layer3 Bounties</h3>
+          <p class="project-description">
+            Participación activa en misiones y tareas de bounties en la plataforma Layer3, contribuyendo al crecimiento del ecosistema.
+          </p>
+          <a href="https://app.layer3.xyz/GAkN1fT2XpycwngdAvd4auqQYkaTju9mmnU2uGo2eyFV" target="_blank" class="project-link">
+            Ver en Layer3
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">Dework Tasks</h3>
+          <p class="project-description">
+            Colaboración en proyectos Web3 a través de Dework, completando tareas y contribuyendo a comunidades descentralizadas.
+          </p>
+          <a href="https://app.dework.xyz/profile/Tony23" target="_blank" class="project-link">
+            Ver en Dework
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+        
+        <div class="project-card">
+          <h3 class="project-title">Futuras Colaboraciones</h3>
+          <p class="project-description">
+            Espacio reservado para próximos proyectos y colaboraciones destacadas en el espacio Web3 y blockchain.
+          </p>
+          <a href="#contact" class="project-link">
+            Contactar para colaborar
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <section id="certificates">
+      <h2>Certificados Web3</h2>
+      <p>
+        Estos son algunos de los certificados que he obtenido en mi camino como desarrollador Web3 y blockchain.
+      </p>
+      
+      <button class="toggle-certificates" id="toggle-certificates">
+        <i class="fas fa-certificate"></i>
+        Mostrar Certificados
+      </button>
+      
+      <div class="certificates-list" id="certificates-list">
+        <div class="certificate-item">
+          <a href="carpeta%20sin%20título/BlockchainBasics.pdf" target="_blank" class="certificate-link">
+            <i class="fas fa-file-pdf"></i>
+            Blockchain Basics
+          </a>
+        </div>
+        
+        <div class="certificate-item">
+          <a href="carpeta%20sin%20título/DecentralizedExchange.pdf" target="_blank" class="certificate-link">
+            <i class="fas fa-file-pdf"></i>
+            Decentralized Exchange
+          </a>
+        </div>
+        
+        <div class="certificate-item">
+          <a href="carpeta%20sin%20título/DecentralizedFinance.pdf" target="_blank" class="certificate-link">
+            <i class="fas fa-file-pdf"></i>
+            Decentralized Finance
+          </a>
+        </div>
+        
+        <div class="certificate-item">
+          <a href="carpeta%20sin%20título/DefiEssentials&Foundations.pdf" target="_blank" class="certificate-link">
+            <i class="fas fa-file-pdf"></i>
+            DeFi Essentials & Foundations
+          </a>
+        </div>
+        
+        <div class="certificate-item">
+          <a href="carpeta%20sin%20título/DifitalAssetsDefi.pdf" target="_blank" class="certificate-link">
+            <i class="fas fa-file-pdf"></i>
+            Digital Assets & DeFi
+          </a>
+        </div>
+        
+        <div class="certificate-item">
+          <a href="carpeta%20sin%20título/SecureCodingPractices.pdf" target="_blank" class="certificate-link">
+            <i class="fas fa-file-pdf"></i>
+            Secure Coding Practices
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer id="contact">
+    <div class="footer-content">
+      <p class="footer-text">
+        ¿Interesado en colaborar o tienes un proyecto en mente?
+      </p>
+      <div class="social-links">
+        <a href="https://github.com/L0rDB0t" target="_blank" class="social-link github">
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/anthony-beita-581a0b260/" target="_blank" class="social-link linkedin">
+          <i class="fab fa-linkedin-in"></i>
+          LinkedIn
+        </a>
+      </div>
+      <p class="footer-text" style="margin-top: 1.5rem;">
+        &copy; 2023 Anthony Beita Toruño. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+  
+  <script>
+    // Like button functionality
+    const likeButton = document.getElementById('like-button');
+    const heartIcon = document.getElementById('heart-icon');
+    const likeCounter = document.getElementById('like-counter');
+    let liked = false;
+    let likeCount = 0;
+    
+    likeButton.addEventListener('click', () => {
+      liked = !liked;
+      if (liked) {
+        heartIcon.style.color = '#ff0000';
+        likeCount++;
+        likeButton.classList.add('liked');
+      } else {
+        heartIcon.style.color = '';
+        likeCount--;
+        likeButton.classList.remove('liked');
+      }
+      likeCounter.textContent = likeCount;
+      
+      // Pulse animation
+      likeButton.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        likeButton.style.transform = 'scale(1)';
+      }, 300);
+    });
+    
+    // Toggle certificates
+    const toggleCertificates = document.getElementById('toggle-certificates');
+    const certificatesList = document.getElementById('certificates-list');
+    
+    toggleCertificates.addEventListener('click', () => {
+      certificatesList.classList.toggle('visible');
+      
+      if (certificatesList.classList.contains('visible')) {
+        toggleCertificates.innerHTML = '<i class="fas fa-times"></i> Ocultar Certificados';
+      } else {
+        toggleCertificates.innerHTML = '<i class="fas fa-certificate"></i> Mostrar Certificados';
+      }
+    });
+    
+    // Scroll animation
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
